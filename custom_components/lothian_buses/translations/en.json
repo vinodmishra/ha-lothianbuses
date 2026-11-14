@@ -1,0 +1,99 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Lothian Buses & Edinburgh Trams",
+        "description": "You can finish setup now and search/add stops directly from the dashboard card editor (with live route badges), or search for stops right now.",
+        "menu_options": {
+          "finish": "Add stops later from the dashboard card editor ⭐",
+          "search": "Search for a stop now"
+        }
+      },
+      "search": {
+        "title": "Search for a bus or tram stop",
+        "description": "Type a stop name (e.g. Princes Street, Haymarket, Clerwood), street, locality, route number (e.g. 26, Tram), or 8-digit stop code (e.g. 36238285).\n\nSelected so far:\n{selected}",
+        "data": {
+          "query": "Search stop"
+        }
+      },
+      "stops": {
+        "title": "Select stops to add",
+        "description": "Tick one or more stops to create departure sensors for them.",
+        "data": {
+          "stops": "Matching stops"
+        }
+      },
+      "more": {
+        "title": "Stops added",
+        "description": "Selected stops:\n{selected}",
+        "menu_options": {
+          "search": "Search for another stop",
+          "finish": "Finish setup"
+        }
+      }
+    },
+    "error": {
+      "query_too_short": "Enter at least 2 characters.",
+      "no_stops": "No stops matched that search. Try a shorter name or 8-digit stop code.",
+      "select_one": "Tick at least one stop."
+    },
+    "abort": {
+      "single_instance_allowed": "Lothian Buses & Edinburgh Trams is already configured. Use '+ Add stop' on the integration page or search directly in the card editor."
+    }
+  },
+  "config_subentries": {
+    "stop": {
+      "entry_type": "Stop",
+      "initiate_flow": {
+        "user": "Add stop"
+      },
+      "step": {
+        "user": {
+          "title": "Add a bus or tram stop",
+          "description": "Search by stop name, street, locality, route number, or 8-digit stop code.",
+          "data": {
+            "query": "Search stop"
+          }
+        },
+        "select": {
+          "title": "Choose a stop",
+          "data": {
+            "stop_id": "Stop"
+          }
+        }
+      },
+      "error": {
+        "query_too_short": "Enter at least 2 characters.",
+        "no_stops": "No matching stops found.",
+        "already_configured": "All matching stops are already added."
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Lothian Buses & Edinburgh Trams options",
+        "data": {
+          "scan_interval": "Update interval",
+          "max_departures": "Maximum departures kept per stop"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "next_arrival": {
+        "name": "Next arrival"
+      },
+      "next_departure_time": {
+        "name": "Next departure time"
+      },
+      "next_service": {
+        "name": "Next service"
+      },
+      "upcoming_schedule": {
+        "name": "Upcoming schedule"
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+Stop location, name, street, and locality metadata in stops.json contains public sector
+information licensed under the UK Open Government Licence v3.0 (OGL v3.0) from the
+Department for Transport National Public Transport Access Nodes (NaPTAN) dataset.
+
+https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/

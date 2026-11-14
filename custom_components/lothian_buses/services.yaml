@@ -1,0 +1,28 @@
+get_schedule:
+  name: Get stop schedule
+  description: Fetch the live departure schedule and natural-language spoken summary for a Lothian Buses or Edinburgh Trams stop.
+  fields:
+    stop_id:
+      name: Stop ID or search query
+      description: 8-digit stop code (e.g. 36253698) or stop name. Leave empty to return schedules for all configured stops.
+      required: false
+      example: "36253698"
+      selector:
+        text:
+    route:
+      name: Route filter
+      description: Optional route number (e.g. 14, 26, Tram) to filter departures.
+      required: false
+      example: "14"
+      selector:
+        text:
+    max_departures:
+      name: Maximum departures
+      description: Maximum number of upcoming departures per stop to include.
+      required: false
+      default: 5
+      selector:
+        number:
+          min: 1
+          max: 20
+          mode: slider
