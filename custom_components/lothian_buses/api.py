@@ -43,9 +43,15 @@ class LothianApi:
                 if resp.status >= 400:
                     raise LothianApiError(f"HTTP {resp.status} from {path}")
                 data = await resp.json(content_type=None)
-                if not isinstance(data, dict):
-                    raise LothianApiError(f"Unexpected response format from {path}")
-                return data
+                if isinstance(data, dict):
+                    return data
+                # lothianapi.com (PHP backend) serializes empty associative arrays as []
+                if isinstance(data, list):
+                    if not data:
+                        return {}
+                    if isinstance(data[0], dict):
+                        return data[0]
+                raise LothianApiError(f"Unexpected response format from {path}")
         except (TimeoutError, aiohttp.ClientError) as err:
             raise LothianConnectionError(f"Error connecting to {url}: {err}") from err
 

@@ -112,7 +112,8 @@ def parse_departure_board(
 ) -> dict[str, Any]:
     """Parse /departureBoards/website JSON and enrich with live fleet & route colour metadata."""
     fallback = fallback_meta or {}
-    stop_obj = raw.get("stop") or {}
+    raw_stop = raw.get("stop")
+    stop_obj = raw_stop if isinstance(raw_stop, dict) else {}
     bundled = get_stop_by_id(stop_id) or {}
 
     stop_name = (
@@ -187,7 +188,8 @@ def parse_departure_board(
             if not isinstance(minutes, int):
                 minutes = max(0, int((expected_ts - now_ts) // 60))
 
-            coord = (live_veh or {}).get("coordinate") or {}
+            raw_coord = (live_veh or {}).get("coordinate")
+            coord = raw_coord if isinstance(raw_coord, dict) else {}
             departures.append(
                 {
                     "route": route,

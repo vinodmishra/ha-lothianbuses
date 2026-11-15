@@ -114,7 +114,8 @@ def stop_from_board(
     """Construct or enrich a stop dictionary from a live /departureBoards/website payload."""
     load_stops()
     existing = _STOPS_BY_ID.get(str(stop_id).strip(), {})
-    stop_info = board.get("stop") or {}
+    raw_stop = board.get("stop")
+    stop_info = raw_stop if isinstance(raw_stop, dict) else {}
     services = board.get("services") or []
     live_routes = [
         str(s.get("service_name")).strip() for s in services if s.get("service_name")
